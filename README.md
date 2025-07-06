@@ -116,10 +116,8 @@ Next/Image: Next.js Image Optimization.
 
 SWR: React Hooks for data fetching.
 
-NextAuth.js (likely from starter): For authentication.
+NextAuth.js : For authentication.
 
-Drizzle ORM (likely from starter): For database interaction.
+Drizzle ORM : For database interaction.
 
-PostgreSQL (likely from starter): Database.
-
-Feel free to customize this README further to match any specific details or additional features of your project.
+PostgreSQL : Database.
