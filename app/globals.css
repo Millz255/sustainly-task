@@ -1,47 +1,35 @@
-/* C:\Users\mgimw\sustainly-task\app\globals.css */
-
-/* 1. Tailwind base, components, and utilities */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/*
-  2. CONSOLIDATED CSS VARIABLES FOR LIGHT AND DARK THEMES.
-  This is the ONLY place where :root and .dark CSS variables should be defined.
-  These define your design tokens (colors, radii) as CSS variables.
-  Tailwind CSS will then pick these up via the `hsl(var(--...))` mappings
-  in your `tailwind.config.ts`.
-*/
 @layer base {
   :root {
-    --background: 0 0% 100%; /* White */
-    --foreground: 0 0% 0%;   /* Black */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 0%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 0%;
-    --primary: 210 29% 24%; /* #122E44 - Dark Blue */
-    --primary-foreground: 0 0% 100%; /* White */
+    --primary: 210 29% 24%;
+    --primary-foreground: 0 0% 100%;
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 210 29% 24%;
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
-    --accent: 327 73% 97%; /* #D8AFFF - Purple */
-    --accent-foreground: 210 29% 24%; /* Dark Blue */
+    --accent: 327 73% 97%;
+    --accent-foreground: 210 29% 24%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
     --ring: 210 29% 24%;
-    --chart-1: 158 89% 40%; /* #0BAA69 - Dark Green */
-    --chart-2: 267 100% 84%; /* #D8AFFF - Purple */
-    --chart-3: 210 29% 24%; /* #122E44 - Dark Blue */
-    --chart-4: 158 89% 40%; /* #0BAA69 - Dark Green */
-    --chart-5: 267 100% 84%; /* #D8AFFF - Purple */
-
-    --light-green-secondary: 127 50% 60%; /* #55DF63 - Light Green secondary color */
-
-    --radius: 0.6rem; /* Base radius */
+    --chart-1: 158 89% 40%;
+    --chart-2: 267 100% 84%;
+    --chart-3: 210 29% 24%;
+    --chart-4: 158 89% 40%;
+    --chart-5: 267 100% 84%;
+    --light-green-secondary: 127 50% 60%;
+    --radius: 0.6rem;
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 210 29% 24%;
@@ -50,8 +38,6 @@
     --sidebar-accent-foreground: 210 29% 24%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 210 29% 24%;
-
-    /* Derived radius variables */
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);
     --radius-sm: calc(var(--radius) - 4px);
@@ -59,20 +45,20 @@
   }
 
   .dark {
-    --background: 210 29% 24%; /* Dark Blue */
-    --foreground: 0 0% 100%;   /* White */
+    --background: 210 29% 24%;
+    --foreground: 0 0% 100%;
     --card: 210 29% 24%;
     --card-foreground: 0 0% 100%;
     --popover: 210 29% 24%;
     --popover-foreground: 0 0% 100%;
-    --primary: 0 0% 100%; /* White */
-    --primary-foreground: 210 29% 24%; /* Dark Blue */
+    --primary: 0 0% 100%;
+    --primary-foreground: 210 29% 24%;
     --secondary: 210 25% 18%;
     --secondary-foreground: 0 0% 100%;
     --muted: 210 25% 18%;
     --muted-foreground: 0 0% 80%;
-    --accent: 158 89% 40%; /* Dark Green (as per dark theme accent) */
-    --accent-foreground: 0 0% 100%; /* White */
+    --accent: 158 89% 40%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
     --border: 210 25% 18%;
@@ -83,9 +69,7 @@
     --chart-3: 0 0% 100%;
     --chart-4: 158 89% 40%;
     --chart-5: 267 100% 84%;
-
-    --light-green-secondary: 127 50% 60%; /* #55DF63 - Light Green secondary color */
-
+    --light-green-secondary: 127 50% 60%;
     --sidebar-background: 210 25% 18%;
     --sidebar-foreground: 0 0% 100%;
     --sidebar-primary: 0 0% 100%;
@@ -96,28 +80,21 @@
     --sidebar-ring: 0 0% 100%;
   }
 
-  /* 3. Global base styles applying utility classes */
   body {
     @apply antialiased bg-background text-foreground;
-    /* Ensure font smoothing is applied */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Global border and outline styles for all elements */
   *,
   ::after,
   ::before,
   ::backdrop,
   ::file-selector-button {
-    @apply border-border outline-ring/50; /* Apply mapped border and outline colors */
+    @apply border-border outline-ring/50;
   }
 }
 
-/*
-  4. @layer utilities for custom font-family definitions.
-  These directly set CSS properties, not @apply Tailwind utilities.
-*/
 @layer utilities {
   body {
     font-family: var(--font-inter), sans-serif;
@@ -125,15 +102,14 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-gilroy), sans-serif;
-    font-weight: 600; /* Semibold */
+    font-weight: 600;
   }
 
   h1 {
-    font-weight: 700; /* Bold for main headlines */
+    font-weight: 700;
   }
 }
 
-/* 5. Standard CSS for theme toggle - these are fine */
 .theme-toggle {
   display: flex;
   align-items: center;
