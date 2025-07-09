@@ -9,6 +9,15 @@ import { ThemeProvider } from '@/components/ui/theme-provider';
 import { useActionState } from 'react';
 import { signOut } from '@/app/(login)/actions';
 import useSWR from 'swr';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+} from '@/components/ui/dropdown-menu';
+import { Users, Settings, Shield, Activity, LayoutDashboard, LogOut } from 'lucide-react'; 
+import React from 'react';
 
 interface UserSession {
   id: string;
@@ -16,12 +25,22 @@ interface UserSession {
   email?: string | null;
 }
 
+
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { data: user } = useSWR<UserSession | null>('/api/user', fetcher);
   const isAuthenticated = !!user;
   const [signoutState, signoutAction, isSignoutPending] = useActionState(signOut, null);
+
+  const navItems = [
+    { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+    { href: '/dashboard/team', icon: Users, label: 'Team' },
+    { href: '/dashboard/general', icon: Settings, label: 'General' },
+    { href: '/dashboard/activity', icon: Activity, label: 'Activity' },
+    { href: '/dashboard/security', icon: Shield, label: 'Security' },
+    { href: '#', icon: LogOut, label: 'Sign Out', type: 'signout' },
+  ];
 
   return (
     <html lang="en" className={`${inter.variable} ${gilroy.variable}`} suppressHydrationWarning>
@@ -72,35 +91,43 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     />
                   </Link>
                   <div className="flex items-center space-x-4">
-                    {isAuthenticated ? (
-                      <form action={signoutAction}>
-                        <Button
-                          type="submit"
-                          variant="outline"
-                          className="bg-primary-white text-primary-dark-blue border-primary-white hover:bg-gray-100 hover:text-primary-dark-blue font-semibold rounded-full"
-                          disabled={isSignoutPending}
-                        >
-                          {isSignoutPending ? 'Signing Out...' : 'Sign Out'}
-                        </Button>
-                      </form>
-                    ) : (
-                      <Link href="/sign-in" passHref>
-                        <Button
-                          variant="outline"
-                          className="bg-primary-white text-primary-dark-blue border-primary-white hover:bg-gray-100 hover:text-primary-dark-blue font-semibold rounded-full"
-                        >
-                          Sign Up
-                        </Button>
-                      </Link>
-                    )}
                     {isAuthenticated && (
-                      <button type="button" id="radix-avatar-trigger" aria-haspopup="menu" aria-expanded="false" data-state="closed" data-slot="dropdown-menu-trigger">
-                        <span data-slot="avatar" className="relative flex shrink-0 overflow-hidden rounded-full cursor-pointer size-9">
-                          <span data-slot="avatar-fallback" className="bg-muted flex size-full items-center justify-center rounded-full text-muted-foreground">
-                            {user?.name ? user.name[0].toUpperCase() : (user?.email ? user.email[0].toUpperCase() : 'U')}
-                          </span>
-                        </span>
-                      </button>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <button type="button" id="radix-avatar-trigger" aria-haspopup="menu" aria-expanded="false" data-state="closed" data-slot="dropdown-menu-trigger">
+                            <span data-slot="avatar" className="relative flex shrink-0 overflow-hidden rounded-full cursor-pointer size-9">
+                              <span data-slot="avatar-fallback" className="bg-muted flex size-full items-center justify-center rounded-full text-muted-foreground">
+                                {user?.name ? user.name[0].toUpperCase() : (user?.email ? user.email[0].toUpperCase() : 'U')}
+                              </span>
+                            </span>
+                          </button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent className="w-56" align="end" forceMount>
+                          {navItems.map((item, index) => (
+                            <React.Fragment key={item.label}>
+                              {item.type === 'signout' ? (
+                                <form action={signoutAction}>
+                                  <DropdownMenuItem asChild>
+                                    <button type="submit" disabled={isSignoutPending} className="w-full flex items-center justify-start text-left">
+                                      <item.icon className="mr-2 h-4 w-4" />
+                                      {isSignoutPending ? 'Signing Out...' : 'Sign Out'}
+                                    </button>
+                                  </DropdownMenuItem>
+                                </form>
+                              ) : (
+                                <Link href={item.href} passHref>
+                                  <DropdownMenuItem>
+                                    <item.icon className="mr-2 h-4 w-4" />
+                                    <span>{item.label}</span>
+                                  </DropdownMenuItem>
+                                </Link>
+                              )}
+                              {item.label === 'Dashboard' && <DropdownMenuSeparator />}
+                              {index === navItems.length - 2 && <DropdownMenuSeparator />}
+                            </React.Fragment>
+                          ))}
+                        </DropdownMenuContent>
+                      </DropdownMenu>
                     )}
                   </div>
                 </div>

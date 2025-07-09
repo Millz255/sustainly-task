@@ -5,6 +5,15 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Users, Settings, Shield, Activity, Menu } from 'lucide-react';
+import {
+  Newspaper,      
+  BarChartBig,    
+  Lightbulb,      
+  CloudFog, 
+  CloudLightning,      
+  Trash2,         
+  LogOut          
+} from 'lucide-react';
 
 export default function DashboardLayout({
   children
@@ -15,11 +24,13 @@ export default function DashboardLayout({
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const navItems = [
-    { href: '/dashboard', icon: Users, label: 'Team' },
-    { href: '/dashboard/general', icon: Settings, label: 'General' },
-    { href: '/dashboard/activity', icon: Activity, label: 'Activity' },
-    { href: '/dashboard/security', icon: Shield, label: 'Security' }
-  ];
+  { href: '/dashboard', icon: Newspaper, label: 'Newshub' },
+  { href: '/dashboard/ESG Report', icon: BarChartBig, label: 'ESG Report' },
+  { href: '/dashboard/Analysis', icon: Lightbulb, label: 'Analysis' },
+  { href: '/dashboard/Carbon Footprint', icon: CloudFog, label: 'Carbon Footprint' },
+  { href: '/dashboard/Climate Risks', icon: CloudLightning, label: 'Climate Risks' },
+  { href: '/dashboard/Food Waste', icon: Trash2, label: 'Food Waste' },
+];
 
   return (
     <div className="flex flex-col min-h-[calc(100dvh-68px)] max-w-7xl mx-auto w-full">
