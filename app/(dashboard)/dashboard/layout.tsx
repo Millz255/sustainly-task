@@ -59,6 +59,9 @@ export default function DashboardLayout({
           }`}
         >
           <nav className="h-full overflow-y-auto p-4">
+            <h2 className="mb-4 px-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+              Modules
+            </h2>
             {navItems.map((item) => {
               const isActive =
                 item.href === '/dashboard'
@@ -75,7 +78,7 @@ export default function DashboardLayout({
                     }`}
                     onClick={() => setIsSidebarOpen(false)}
                   >
-                    <item.icon className="h-4 w-4" />
+                    <item.icon className="mr-2 h-4 w-4" />
                     {item.label}
                   </Button>
                 </Link>
