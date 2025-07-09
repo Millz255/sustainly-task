@@ -59,20 +59,28 @@ export default function DashboardLayout({
           }`}
         >
           <nav className="h-full overflow-y-auto p-4">
-            {navItems.map((item) => (
-              <Link key={item.href} href={item.href} passHref>
-                <Button
-                  variant={pathname === item.href ? 'secondary' : 'ghost'}
-                  className={`shadow-none my-1 w-full justify-start ${
-                    pathname === item.href ? 'bg-gray-100' : ''
-                  }`}
-                  onClick={() => setIsSidebarOpen(false)}
-                >
-                  <item.icon className="h-4 w-4" />
-                  {item.label}
-                </Button>
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const isActive =
+                item.href === '/dashboard'
+                  ? pathname === item.href
+                  : pathname.startsWith(item.href);
+              return (
+                <Link key={item.href} href={item.href} passHref>
+                  <Button
+                    variant={isActive ? 'default' : 'ghost'}
+                    className={`shadow-none my-1 w-full justify-start ${
+                      isActive
+                        ? 'bg-accent-green text-white hover:bg-accent-green/90'
+                        : ''
+                    }`}
+                    onClick={() => setIsSidebarOpen(false)}
+                  >
+                    <item.icon className="h-4 w-4" />
+                    {item.label}
+                  </Button>
+                </Link>
+              );
+            })}
           </nav>
         </aside>
 
