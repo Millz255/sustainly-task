@@ -109,21 +109,3 @@
     font-weight: 700;
   }
 }
-
-.theme-toggle {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.theme-toggle-option {
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.theme-toggle-option.active {
-  background-color: hsl(var(--accent));
-  color: hsl(var(--accent-foreground));
-}

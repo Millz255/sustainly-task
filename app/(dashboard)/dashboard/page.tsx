@@ -18,7 +18,8 @@ import { Input } from '@/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Loader2, PlusCircle } from 'lucide-react';
-import { ThemeSwitcher } from '@/components/ui/ThemeSwitcher';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
+
 
 type ActionState = {
   error?: string;
@@ -265,7 +266,7 @@ export default function SettingsPage() {
       <h1 className="text-lg lg:text-2xl font-heading font-bold mb-6 text-primary-dark-blue">Team Settings</h1>
       <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:space-x-4">
         <Label htmlFor="theme-select" className="mb-2 sm:mb-0 font-body font-semibold text-muted-foreground"></Label>
-        <ThemeSwitcher />
+        <ThemeToggle />
       </div>
       <Suspense fallback={<SubscriptionSkeleton />}>
         <ManageSubscription />

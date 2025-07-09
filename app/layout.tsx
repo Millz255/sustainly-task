@@ -2,6 +2,7 @@
 import './globals.css'
 import type { Metadata, Viewport } from 'next'
 import { gilroy, inter } from './fonts'
+import { ThemeProvider } from '@/components/ui/theme-provider'
 
 export const metadata: Metadata = {
   title: 'Sustainly',
@@ -28,9 +29,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${gilroy.variable}`}>
+    <html lang="en" className={`${inter.variable} ${gilroy.variable}`} suppressHydrationWarning>
       <body>
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )

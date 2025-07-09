@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { gilroy, inter } from '../fonts';
 import { SWRConfig } from 'swr';
-import { ThemeProvider } from '@/lib/theme-context';
+import { ThemeProvider } from '@/components/ui/theme-provider';
 import { useActionState } from 'react';
 import { signOut } from '@/app/(login)/actions';
 import useSWR from 'swr';
