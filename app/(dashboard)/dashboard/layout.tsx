@@ -25,11 +25,11 @@ export default function DashboardLayout({
 
   const navItems = [
   { href: '/dashboard', icon: Newspaper, label: 'Newshub' },
-  { href: '/dashboard/ESG Report', icon: BarChartBig, label: 'ESG Report' },
-  { href: '/dashboard/Analysis', icon: Lightbulb, label: 'Analysis' },
-  { href: '/dashboard/Carbon Footprint', icon: CloudFog, label: 'Carbon Footprint' },
-  { href: '/dashboard/Climate Risks', icon: CloudLightning, label: 'Climate Risks' },
-  { href: '/dashboard/Food Waste', icon: Trash2, label: 'Food Waste' },
+  { href: '/dashboard/esg-report', icon: BarChartBig, label: 'ESG Report' },
+  { href: '/dashboard/analysis', icon: Lightbulb, label: 'Analysis' },
+  { href: '/dashboard/carbon-footprint', icon: CloudFog, label: 'Carbon Footprint' },
+  { href: '/dashboard/climate-risks', icon: CloudLightning, label: 'Climate Risks' },
+  { href: '/dashboard/food-waste', icon: Trash2, label: 'Food Waste' },
 ];
 
   return (
